@@ -5,28 +5,40 @@ export const NavbarMenu = [
         link : "/"
     },
 
-    {
+     {
         id:2,
-        title: "Find Recyclers",
-        link : "#"
+        title: "About",
+        link : "/about"
     },
-
 
     {
         id:3,
-        title: "Request Pickup",
-        link : "#"
+        title: "Recyclers",
+        link : "/FindRecyclers"
     },
+
 
     {
         id:4,
-        title: "Our sponsors",
+        title: "Pickup",
         link : "#"
     },
 
     {
         id:5,
+        title: "sponsors",
+        link : "#"
+    },
+
+    {
+        id:6,
         title: "FAQS",
+        link : "#"
+    },
+
+    {
+        id:7,
+        title: "Contact",
         link : "#"
     },
 ]
