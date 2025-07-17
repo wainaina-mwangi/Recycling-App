@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+
+
+:root {
+  --eco-green: #2e7d32;
+  --eco-orange: #ff6f00;
+  --eco-mint: #f1fdf3;
+  --eco-charcoal: #2e2e2e;
+  --eco-slate: #6e6e6e;
+  --eco-white: #ffffff;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+body{
+  background-color: var(--eco-mint);
+}
