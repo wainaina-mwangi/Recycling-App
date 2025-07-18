@@ -2,7 +2,7 @@
 
 const Request = require('../models/Request');
 const Pickup = require('../models/Pickup');
-const Recycler = require('../models/Recycler');
+const Recycler = require('../models/Recyclers');
 
 exports.getDashboardStats = async (req, res) => {
   try {

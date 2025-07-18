@@ -1,6 +1,6 @@
 // controllers/recyclerController.js
 
-const Recycler = require('../models/Recycler');
+const Recycler = require('../models/Recyclers');
 
 // @desc    Get all recyclers
 // @route   GET /api/recyclers

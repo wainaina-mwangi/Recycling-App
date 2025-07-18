@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -8,51 +7,44 @@ const connectDB = require('./config/db');
 // Load environment variables
 dotenv.config();
 
-// Initialize Express app
+// ✅ Initialize Express app FIRST before using it
 const app = express();
+
+// ✅ CORS setup (allow credentials)
+app.use(cors({
+  origin: 'http://localhost:5174', // Your frontend port
+  credentials: true
+}));
 
 // Connect to DB
 connectDB();
 
 // Middleware
-// Replace with your frontend domain during deployment
-// const allowedOrigins = ['http://localhost:3000', 'https://your-frontend.vercel.app'];
-
-// app.use(cors({
-//   origin: allowedOrigins,
-//   credentials: true, // allows cookies/auth headers if needed
-// }));
-
-app.use(cors());
 app.use(express.json());
 
-const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
-const { protect } = require('./middlewares/authMiddleware');
-
-// 404 & error handler middlewares
-app.use(notFound);
-app.use(errorHandler);
-
-// Example Routes
+// Routes
 const recyclerRoutes = require('./routes/recyclerRoutes');
 const requestRoutes = require('./routes/requestRoutes');
 const pickupRoutes = require('./routes/pickupRoutes');
 const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 
+// Use Routes
 app.use('/api/recyclers', recyclerRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/pickups', pickupRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
-
-
+// Error handling middleware
+const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
+app.use(notFound);
+app.use(errorHandler);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(` Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
   });
 });

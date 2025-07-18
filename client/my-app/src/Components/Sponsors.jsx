@@ -33,7 +33,7 @@ const sponsors = [
 
 export default function Sponsors() {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900" id="sponsors">
+    <section className="py-16 bg-gray-50 mt-10 dark:bg-gray-900" id="sponsors">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Animated Heading */}
         <motion.h2

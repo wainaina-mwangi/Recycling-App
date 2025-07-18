@@ -14,31 +14,36 @@ export const NavbarMenu = [
     {
         id:3,
         title: "Recyclers",
-        link : "/FindRecyclers"
+        link : "/recyclers"
     },
 
 
     {
         id:4,
         title: "Pickup",
-        link : "#"
+        link : "pickup"
     },
 
     {
         id:5,
         title: "sponsors",
-        link : "#"
+        link : "sponsors"
     },
 
     {
         id:6,
         title: "FAQS",
-        link : "#"
+        link : "faqs"
+    },
+    {
+        id:7,
+        title: "Community",
+        link : "community"
     },
 
     {
-        id:7,
+        id:8,
         title: "Contact",
-        link : "#"
+        link : "contact"
     },
 ]
