@@ -5,19 +5,20 @@ import axios from '../api/axios';
 const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // ✅ fix: define navigate
+  const navigate = useNavigate(); 
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setMessage('');
-    try {
-      await axios.post('/auth/register', form);
-      setMessage(res.data.message || 'Registration successful!');
-      navigate('/dashboard');
-    } catch (err) {
-      setMessage(err.response?.data?.error || 'Registration failed');
-    }
-  };
+  e.preventDefault();
+  setMessage('');
+  try {
+    const res = await axios.post('/auth/register', form); // FIXED
+    setMessage(res.data.message || 'Registration successful!');
+    navigate('/dashboard');
+  } catch (err) {
+    setMessage(err.response?.data?.error || 'Registration failed');
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">

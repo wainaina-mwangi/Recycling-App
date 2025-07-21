@@ -50,49 +50,55 @@ export default function FAQs() {
   };
 
   return (
-    <section className="py-16 bg-white dark:bg-gray-900 mt-10" id="faq">
+    <section className="py-20 mt-6 bg-gradient-to-br from-green-50 via-white to-green-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300" id="faq">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-white">
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
           Frequently Asked Questions
         </h2>
 
         <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border rounded-xl dark:border-gray-700 bg-gray-50 dark:bg-gray-800 shadow-sm"
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left"
+          {faqs.map((faq, index) => {
+            const isActive = activeIndex === index;
+            return (
+              <motion.div
+                key={index}
+                layout
+                className={`rounded-2xl overflow-hidden shadow-md transition-all duration-300 ${
+                  isActive ? "bg-white dark:bg-gray-800 border-l-4 border-green-600" : "bg-gray-50 dark:bg-gray-700"
+                }`}
               >
-                <div className="flex items-center gap-3 text-gray-800 dark:text-gray-100 font-semibold">
-                  {faq.icon}
-                  {faq.question}
-                </div>
-                <ChevronDown
-                  className={`transition-transform ${
-                    activeIndex === index ? "rotate-180" : ""
-                  } text-gray-500`}
-                />
-              </button>
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex items-center justify-between px-6 py-4 text-left"
+                >
+                  <div className="flex items-center gap-4 text-lg text-gray-800 dark:text-gray-100 font-medium">
+                    {faq.icon}
+                    <span>{faq.question}</span>
+                  </div>
+                  <ChevronDown
+                    className={`w-6 h-6 transform transition-transform duration-200 ${
+                      isActive ? "rotate-180 text-green-600" : "text-gray-500"
+                    }`}
+                  />
+                </button>
 
-              <AnimatePresence initial={false}>
-                {activeIndex === index && (
-                  <motion.div
-                    key="faq-content"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
-                    className="px-5 pt-0 pb-4 text-gray-600 dark:text-gray-300"
-                  >
-                    {faq.answer}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      key="faq-content"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-6 pb-6 text-gray-600 dark:text-gray-300 text-sm"
+                    >
+                      {faq.answer}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

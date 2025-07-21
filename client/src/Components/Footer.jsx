@@ -1,5 +1,3 @@
-// src/Components/Footer.jsx
-
 import {
   Mail,
   MapPin,
@@ -26,7 +24,7 @@ const footerVariants = {
 export default function Footer() {
   const [email, setEmail] = useState("");
 
-   const handleSubscribe  = (e) => {
+  const handleSubscribe = (e) => {
     e.preventDefault();
     toast.success("You’ve subscribed to our newsletter!", {
       position: "top-right",
@@ -36,59 +34,93 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] bg-repeat bg-gray-900 text-white pt-16 px-6">
-      {/* Top Section */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
-        {/* Logo and Description */}
-        <motion.div variants={footerVariants} custom={0} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <h2 className="text-2xl font-bold mb-3 text-green-500">RecyConnect</h2>
+    <footer className="relative text-white pt-16 px-6 bg-gray-900 overflow-hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-700/20 via-green-500/10 to-green-600/20 opacity-30 pointer-events-none animate-pulse"></div>
+
+      {/* Content Wrapper */}
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+        {/* Brand Info */}
+        <motion.div
+          variants={footerVariants}
+          custom={0}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl font-bold mb-3 text-green-400">
+            RecyConnect
+          </h2>
           <p className="text-gray-400 mb-4">
-            Empowering communities to take action in waste reporting and recycling.
+            Empowering communities to take action in waste reporting and
+            recycling.
           </p>
           <div className="flex gap-3">
-            <Facebook className="hover:text-green-500 cursor-pointer" />
-            <Twitter className="hover:text-green-500 cursor-pointer" />
-            <Instagram className="hover:text-green-500 cursor-pointer" />
+            <Facebook className="hover:text-green-400 transition" />
+            <Twitter className="hover:text-green-400 transition" />
+            <Instagram className="hover:text-green-400 transition" />
           </div>
         </motion.div>
 
         {/* Quick Links */}
-        <motion.div variants={footerVariants} custom={1} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3 text-green-500">Quick Links</h3>
+        <motion.div
+          variants={footerVariants}
+          custom={1}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <h3 className="text-lg font-semibold mb-3 text-green-400">
+            Quick Links
+          </h3>
           <ul className="space-y-2 text-gray-300">
-            {[
-              "About",
-              "How It Works",
-              "FAQs",
-              "Contact",
-            ].map((link) => (
-              <li key={link} className="flex items-center gap-2 hover:text-green-400">
+            {["About", "How It Works", "FAQs", "Contact"].map((link) => (
+              <li
+                key={link}
+                className="flex items-center gap-2 hover:text-green-300 transition"
+              >
                 <ArrowRight size={16} />
-                <a href={`#${link.toLowerCase().replace(/\s/g, "-")}`}>{link}</a>
+                <a href={`#${link.toLowerCase().replace(/\s/g, "-")}`}>
+                  {link}
+                </a>
               </li>
             ))}
           </ul>
         </motion.div>
 
         {/* Resources */}
-        <motion.div variants={footerVariants} custom={2} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3 text-green-500">Resources</h3>
+        <motion.div
+          variants={footerVariants}
+          custom={2}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <h3 className="text-lg font-semibold mb-3 text-green-400">
+            Resources
+          </h3>
           <ul className="space-y-2 text-gray-300">
-            <li className="flex items-center gap-2 hover:text-green-400">
+            <li className="flex items-center gap-2 hover:text-green-300 transition">
               <ArrowRight size={16} /> <a href="/tips">Recycling Tips</a>
             </li>
-            <li className="flex items-center gap-2 hover:text-green-400">
+            <li className="flex items-center gap-2 hover:text-green-300 transition">
               <ArrowRight size={16} /> <a href="/guidelines">Guidelines</a>
             </li>
-            <li className="flex items-center gap-2 hover:text-green-400">
+            <li className="flex items-center gap-2 hover:text-green-300 transition">
               <ArrowRight size={16} /> <a href="/blog">Blog</a>
             </li>
           </ul>
         </motion.div>
 
         {/* Contact Info */}
-        <motion.div variants={footerVariants} custom={3} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3 text-green-500">Contact</h3>
+        <motion.div
+          variants={footerVariants}
+          custom={3}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <h3 className="text-lg font-semibold mb-3 text-green-400">Contact</h3>
           <ul className="text-gray-300 space-y-2">
             <li className="flex items-center gap-2">
               <MapPin size={18} /> Nairobi, Kenya
@@ -103,9 +135,19 @@ export default function Footer() {
         </motion.div>
 
         {/* Newsletter */}
-        <motion.div variants={footerVariants} custom={4} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <h3 className="text-lg font-semibold mb-3 text-green-500">Newsletter</h3>
-          <p className="text-gray-400 mb-4">Stay updated with recycling tips and updates.</p>
+        <motion.div
+          variants={footerVariants}
+          custom={4}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <h3 className="text-lg font-semibold mb-3 text-green-400">
+            Newsletter
+          </h3>
+          <p className="text-gray-400 mb-4">
+            Stay updated with recycling tips and updates.
+          </p>
           <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
             <input
               type="email"
@@ -113,11 +155,11 @@ export default function Footer() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none"
+              className="px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
             <button
               type="submit"
-              className="bg-green-600 hover:bg-green-500 text-white rounded-md py-2"
+              className="bg-green-600 hover:bg-green-500 transition text-white rounded-md py-2 font-medium shadow-md"
             >
               Subscribe
             </button>
@@ -125,15 +167,14 @@ export default function Footer() {
         </motion.div>
       </div>
 
-      {/* Sub-Footer Divider */}
-      <hr className="my-10 border-gray-700" />
+      {/* Divider */}
+      <hr className="my-10 border-gray-700 relative z-10" />
 
-      {/* Bottom Text */}
-      <div className="text-center text-sm text-gray-500 pb-6">
+      {/* Bottom */}
+      <div className="text-center text-sm text-gray-500 pb-6 relative z-10">
         &copy; {new Date().getFullYear()} RecyConnect. All rights reserved.
       </div>
 
-      {/* Toast Notification */}
       <ToastContainer />
     </footer>
   );

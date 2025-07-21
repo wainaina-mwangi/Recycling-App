@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, BaggageClaim, SunIcon, MoonIcon } from "lucide-react";
 import { NavbarMenu } from "../mockData/data";
-import { Link } from "react-router-dom"; // ✅ Import Link
+import { Link } from "react-router-dom"; 
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

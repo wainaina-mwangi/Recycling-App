@@ -12,6 +12,8 @@ import Footer from "./Components/Footer";
 import Loader from "./Components/Loader";
 import Community from "./pages/Community";
 import Recyclers from "./Components/Recyclers";
+import AIPanel from "./Components/AIPanel";
+import AIToggleButton from "./Components/AIToggleButton";
 import Pick from "./pages/Pick";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
@@ -35,6 +37,8 @@ const LayoutWrapper = () => {
   return (
     <div className="overflow-x-hidden">
       {!isAuthRoute && <Navbar />}
+      <AIPanel/>
+      <AIToggleButton/>
 
       <Routes>
         <Route path="/" element={<Homepage />} />

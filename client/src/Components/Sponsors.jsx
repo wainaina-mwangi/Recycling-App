@@ -33,37 +33,45 @@ const sponsors = [
 
 export default function Sponsors() {
   return (
-    <section className="py-16 bg-gray-50 mt-10 dark:bg-gray-900" id="sponsors">
+    <section
+      id="sponsors"
+      className="py-20 bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800"
+    >
       <div className="max-w-6xl mx-auto px-6 text-center">
-        {/* Animated Heading */}
-        <motion.h2
-          className="text-3xl font-bold mb-10 text-gray-700 dark:text-white"
+        {/* Heading */}
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Our Environmental Partners
-        </motion.h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-3">
+            Our Environmental Partners
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-10">
+            Working together for a cleaner, greener future
+          </p>
+        </motion.div>
 
-        {/* Swiper Slider */}
+        {/* Sponsor Logos Slider */}
         <Swiper
           spaceBetween={30}
-          slidesPerView={5}
+          slidesPerView={3}
           breakpoints={{
             640: { slidesPerView: 3 },
             768: { slidesPerView: 4 },
             1024: { slidesPerView: 5 },
           }}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
           loop={true}
+          speed={800}
+          autoplay={{ delay: 1500, disableOnInteraction: false }}
           modules={[Autoplay]}
         >
           {sponsors.map((sponsor) => (
             <SwiperSlide key={sponsor.id}>
               <motion.div
-                className="flex justify-center items-center h-30"
-                initial={{ opacity: 0, scale: 0.8 }}
+                className="flex justify-center items-center h-24"
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4 }}
                 viewport={{ once: true }}
@@ -71,7 +79,7 @@ export default function Sponsors() {
                 <img
                   src={sponsor.logo}
                   alt={sponsor.name}
-                  className="h-16 object-contain grayscale hover:grayscale-0 transition duration-300"
+                  className="h-16 object-contain grayscale hover:grayscale-0 hover:scale-105 transition duration-300"
                 />
               </motion.div>
             </SwiperSlide>

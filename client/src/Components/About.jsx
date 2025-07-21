@@ -1,45 +1,55 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section className="bg-white py-16 px-4 md:px-10 mt-12">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
+    <section className="bg-white dark:bg-gray-900 py-20 px-4 md:px-10 mt-10 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Image Section */}
         <motion.div
-          className="w-full md:w-1/2"
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ x: -80, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="w-full"
         >
-          <img
-            src="https://ik.imagekit.io/tba7zelzb/about.jpeg.png?updatedAt=1752762540645"
-            alt="About RecyConnect"
-            className="rounded-3xl shadow-md object-cover w-full h-auto"
-          />
+          <div className="overflow-hidden rounded-3xl shadow-lg border border-green-200 dark:border-green-600">
+            <img
+              src="https://ik.imagekit.io/tba7zelzb/about.jpeg.png?updatedAt=1752762540645"
+              alt="About RecyConnect"
+              className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+            />
+          </div>
         </motion.div>
 
         {/* Text Section */}
         <motion.div
-          className="w-full md:w-1/2 text-center md:text-left"
-          initial={{ x: 100, opacity: 0 }}
+          initial={{ x: 80, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
+          className="text-center md:text-left"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-600 mb-6 flex gap-2 justify-center md:justify-start">
-            Welcome to <span className="text-green-700">RecyConnect</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-6 leading-tight">
+            Empowering Waste Responsibility
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed mb-4">
-            RecyConnect is a sustainability-driven platform dedicated to tackling littering and enhancing responsible waste practices.
-            Users can report illegal dumping, request garbage pickup, and connect with nearby recyclers — all from one centralized platform.
+
+          <div className="inline-block px-4 py-1 mb-4 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white text-sm uppercase tracking-wide">
+            Welcome to RecyConnect
+          </div>
+
+          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            <strong>RecyConnect</strong> is a sustainability-focused platform that empowers users
+            to report litter, request eco-friendly waste pickups, and easily connect with certified recyclers in their area.
           </p>
-          <p className="text-gray-600 mb-2">
-            Whether you're a citizen, a recycler, or a waste collector — RecyConnect connects you
-            to the tools and people that make proper recycling easier and more impactful.
+
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            We bridge the gap between communities and green initiatives, making it easier than ever
+            to contribute to cleaner, safer, and more responsible environments.
           </p>
-          <p className="text-gray-500 mt-4">
-            We're proud to contribute toward the UN Sustainable Development Goal 12: Responsible Consumption & Production.
+
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-6">
+            💚 Proudly contributing to <span className="text-green-600 dark:text-green-400 font-medium">SDG 12:</span>{" "}
+            Responsible Consumption & Production.
           </p>
         </motion.div>
       </div>
