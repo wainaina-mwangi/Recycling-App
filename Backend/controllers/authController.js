@@ -1,20 +1,35 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) return res.status(400).json({ error: 'All fields are required' });
+const createToken = (user) =>
+  jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
+export const register = async (req, res) => {
   try {
-    const existing = await User.findOne({ email });
-    if (existing) return res.status(400).json({ error: 'Email already in use' });
+    const { username, email, password } = req.body;
+    const exists = await User.findOne({ email });
+    if (exists) return res.status(400).json({ error: 'Email already registered' });
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const user = await User.create({ username, email, password: hashedPassword });
+    const newUser = await User.create({ username, email, password });
+    const token = createToken(newUser);
 
-    res.status(201).json({ message: 'Registration successful', user: { id: user._id, username: user.username } });
+    res.cookie('token', token, { httpOnly: true }).status(201).json({ user: newUser.username });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+
+    const token = createToken(user);
+    res.cookie('token', token, { httpOnly: true }).json({ user: user.username });
+  } catch (err) {
+    res.status(500).json({ error: 'Login failed' });
   }
 };

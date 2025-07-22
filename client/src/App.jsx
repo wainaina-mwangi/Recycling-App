@@ -19,6 +19,9 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Homepage from "./pages/Homepage";
 import Join from "./pages/Join";
+import Dashboard from "./pages/Dashboard/DashboardHome"
+import ProtectedRoute from './Components/ProtectedRoute';
+import DashboardLayout from './pages/Dashboard/DashboardHome';
 
 // ✨ Wrapper for using `useLocation` outside <Router>
 const LayoutWrapper = () => {
@@ -52,6 +55,14 @@ const LayoutWrapper = () => {
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+         <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       {!isAuthRoute && <Footer />}
