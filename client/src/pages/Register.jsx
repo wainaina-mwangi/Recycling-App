@@ -12,7 +12,8 @@ const Register = () => {
     setError('');
 
     try {
-      await api.post('/api/pages/register', form);
+      await axios.post("http://localhost:5000/api/auth/register", userData);
+
       navigate('/login');
     } catch (err) {
       setError(err.response?.data?.error || 'Registration failed');
