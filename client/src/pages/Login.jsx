@@ -12,7 +12,7 @@ const Login = () => {
     setError('');
 
     try {
-      const res = await api.post('/api/pages/login', form);
+      const res = await api.post('/api/auth/login', form);
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');
     } catch (err) {
