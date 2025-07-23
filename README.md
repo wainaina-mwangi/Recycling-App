@@ -15,7 +15,7 @@
 
 </div>
 
-## 📋 Table of Contents
+## 📋 Table of Contentsz
 
 - [Features](#-features)
 - [Dashboard Features](#-dashboard-features)
