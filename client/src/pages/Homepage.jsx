@@ -3,7 +3,7 @@ import React from "react";
 import HeroSlider from "../Components/HeroSlider";
 import About from "../Components/About";
 import HowItWorks from "../Components/HowItWorks";
-import FAQs from "../Components/FAQs";
+import FAQs from "../Components/Faqs";
 import Sponsors from "../Components/Sponsors";
 import Contact from "../Components/Contact";
 import WhatsAppButton from "../Components/WhatsAppButton";
