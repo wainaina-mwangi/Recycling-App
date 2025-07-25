@@ -6,7 +6,7 @@ import HeroSlider from "./Components/HeroSlider";
 import About from "./Components/About";
 import HowItWorks from "./Components/HowItWorks";
 import Sponsors from "./Components/Sponsors";
-import FAQs from "./Components/FAQs";
+import FAQs from "./Components/Faqs";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 import Loader from "./Components/Loader";
