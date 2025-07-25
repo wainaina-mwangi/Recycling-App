@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import Loader from "./Components/Loader.jsx";
+import 'react-toastify/dist/ReactToastify.css';
 import "./index.css";
 
 function Main() {

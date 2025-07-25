@@ -1,35 +1,70 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+const User = require('../Models/user');
+const bcrypt = require ('bcryptjs');
+const jwt  = require('jsonwebtoken');
 
-const createToken = (user) =>
-  jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '3d' });
-
-export const register = async (req, res) => {
+const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const exists = await User.findOne({ email });
-    if (exists) return res.status(400).json({ error: 'Email already registered' });
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res
+        .status(409)
+        .json({ message: "User already exists", success: false });
+    }
 
-    const newUser = await User.create({ username, email, password });
-    const token = createToken(newUser);
+    const newUser = new User({ username, email, password });
+    User.password = await bcrypt.hash(password, 10);
+    await newUser.save();
 
-    res.cookie('token', token, { httpOnly: true }).status(201).json({ user: newUser.username });
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    res.status(201).json({ message: "signup successful", success: true });
+  } catch (error) {
+    res.status(500).json({ message: "internal server error", success: false });
   }
 };
 
-export const login = async (req, res) => {
+
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user || !(await user.comparePassword(password))) {
-      return res.status(400).json({ error: 'Invalid credentials' });
+    const user = await User.findOne({ email }); // i will change to user if it brings problem
+    if (!user) {
+      return res
+        .status(401)
+        .json({
+          message: "Authentication failed: Invalid credentials",
+          success: false,
+        });
     }
-
-    const token = createToken(user);
-    res.cookie('token', token, { httpOnly: true }).json({ user: user.username });
-  } catch (err) {
-    res.status(500).json({ error: 'Login failed' });
+    const isPassEqual = await bcrypt.compare(password, user.password);
+    if (isPassEqual) {
+      return res
+        .status(403)
+        .json({ message: "Auth failed 0r password is wrong", success: false });
+    }
+    const jwtToken = jwt.sign(
+      { email: user.email, _id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+    res.status(200).json({
+      message: "login successful",
+      jwtToken,
+      email,
+      username: user.username,
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "internal server error", success: false });
   }
+};
+
+
+
+
+
+
+
+module.exports = {
+  signup,
+  login
 };
