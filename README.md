@@ -9,7 +9,7 @@ To empower communities to **reduce waste**, **track recycling efforts**, and **r
 
 <div align="start"> <a href="./frontend/README.md"> <img src="https://img.shields.io/badge/Recycling-App-32CD32?style=for-the-badge&labelColor=green" alt="Recycling App Badge" /> </a>
 <a href="https://recycling-app-eotz.vercel.app/"><img src="https://img.shields.io/badge/♻️ LIVE-DEMO-00FF7F?style=for-the-badge&labelColor=green" alt="Live Demo" /></a>
-<a href="https://recycling-app-eotz.vercel.app/"> >
+<a href="https://recycling-app-eotz.vercel.app/"> 
 
 ## 📋 Table of Contents
 
