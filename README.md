@@ -205,7 +205,7 @@ Follow these steps to set up the project locally:
 Clone the Repository
 
 bash
-git clone https://github.com/your-username/recycling-app.git
+git clone https://github.com/wainaina-mwangi/Recycling-App.git
 cd recycling-app
 Install Backend Dependencies
 
@@ -235,7 +235,7 @@ npm start
 
 Backend: http://localhost:5000
 
-Frontend: http://localhost:3000
+Frontend: http://localhost:5173
 
 🔐 Environment Setup (.env)
 Create a .env file in the backend/ directory and add your environment variables:
