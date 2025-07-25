@@ -16,7 +16,7 @@ import AIPanel from "./Components/AIPanel";
 import AIToggleButton from "./Components/AIToggleButton";
 import Pick from "./pages/Pick";
 import Login from "./pages/Login";
-import Register from "./Pages/Register";
+import Register from "./pages/Register";
 import Homepage from "./pages/Homepage";
 import Join from "./pages/Join";
 import Dashboard from "./pages/Dashboard/DashboardHome"
