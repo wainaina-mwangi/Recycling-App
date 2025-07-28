@@ -4,11 +4,12 @@ A web application that allows users to report littering, find nearby recycling s
 ## 🌍 Project Goal
 
 To empower communities to **reduce waste**, **track recycling efforts**, and **report littering** incidents for a cleaner and greener environment in Kenya.
+![image alt](https://github.com/wainaina-mwangi/Recycling-App/blob/f2aa4d9fedd7feb9a4cd61dd8c390aa813be3baf/homepage.jpg)
 
 
 <div align="start"> <a href="./frontend/README.md"> <img src="https://img.shields.io/badge/Recycling-App-32CD32?style=for-the-badge&labelColor=green" alt="Recycling App Badge" /> </a>
-<a href="https://recycling-app.vercel.app/"><img src="https://img.shields.io/badge/♻️ LIVE-DEMO-00FF7F?style=for-the-badge&labelColor=green" alt="Live Demo" /></a>
-<a href="https://recycling-app.vercel.app/"> <img src="./screenshot/recycling-home" alt="Recycling App Live Demo Screenshot" width="100%" /> <p align="center"><em>Experience the Recycling Finder & Pickup App live - Click to explore!</em></p> </a> </div>
+<a href="https://recycling-app-eotz.vercel.app/"><img src="https://img.shields.io/badge/♻️ LIVE-DEMO-00FF7F?style=for-the-badge&labelColor=green" alt="Live Demo" /></a>
+<a href="https://recycling-app-eotz.vercel.app/"> 
 
 ## 📋 Table of Contents
 
@@ -205,7 +206,7 @@ Follow these steps to set up the project locally:
 Clone the Repository
 
 bash
-git clone https://github.com/your-username/recycling-app.git
+git clone https://github.com/wainaina-mwangi/Recycling-App.git
 cd recycling-app
 Install Backend Dependencies
 
@@ -235,7 +236,7 @@ npm start
 
 Backend: http://localhost:5000
 
-Frontend: http://localhost:3000
+Frontend: http://localhost:5173
 
 🔐 Environment Setup (.env)
 Create a .env file in the backend/ directory and add your environment variables:
