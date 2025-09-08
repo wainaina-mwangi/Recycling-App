@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { ArrowRight, Leaf } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from "react-router-dom"; 
 
 export default function HeroSlider() {
   const slides = [
@@ -70,7 +71,9 @@ export default function HeroSlider() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
+                  <Link to ='/recyclers'>
                   Find Recyclers <ArrowRight />
+                  </Link>
                 </motion.a>
               </div>
             </motion.div>
