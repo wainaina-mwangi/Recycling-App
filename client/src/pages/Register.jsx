@@ -1,172 +1,116 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import { handleError, handleSuccess } from '../utilis';
+import React, { useState } from "react";
+import { registerUser, loginWithGoogle } from "../services/authService";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Register() {
-  const [signupInfo, setsignupInfo] = useState({ 
-    username: '',
-    email: '',
-    password: ''
-  });
-
-  // Countdown state
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  // Target launch date
-  const launchDate = new Date("2025-09-12T12:00:00").getTime();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      if (distance <= 0) {
-        clearInterval(interval);
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        setTimeLeft({ days, hours, minutes, seconds });
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [launchDate]);
-
+export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setsignupInfo(prevInfo => ({
-      ...prevInfo,
-      [name]: value
-    }));
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      await registerUser(email, password);
+      toast.success("🎉 Registered successfully!");
+      setTimeout(() => navigate("/dashboard"), 1500);
+    } catch (err) {
+      toast.error(`❌ ${err.message}`);
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { username, email, password } = signupInfo;
-    if (!username || !email || !password) {
-      return handleError('All fields required');
-    }
-
+  const handleGoogleRegister = async () => {
     try {
-      const url = 'http://localhost:5000/auth/signup';
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(signupInfo),
-      });
-      const result = await response.json();
-      const { success, message, error } = result;
-
-      if (success) {
-        handleSuccess(message || 'Registered successfully');
-        setTimeout(() => {
-          navigate('/login');
-        }, 1000);
-      } else if (error) {
-        const details = error?.details?.[0]?.message || 'Registration failed';
-        handleError(details);
-      }
-    } catch (error) {
-      handleError(error.message || 'Network error');
+      await loginWithGoogle();
+      toast.success("🎉 Registered with Google!");
+      setTimeout(() => navigate("/dashboard"), 1500);
+    } catch (err) {
+      toast.error(`❌ ${err.message}`);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-2">
-          Register
-        </h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-white to-green-200 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+        {/* Heading */}
+        <h2 className="text-3xl font-extrabold text-gray-800 text-center mb-2">
+          Create Account
+        </h2>
+        <p className="text-gray-500 text-center mb-6">
+          Join us in building a cleaner future 🌍
+        </p>
 
-        {/* Countdown Timer */}
-        <div className="text-center mb-6">
-          <p className="text-gray-600 mb-2">Countdown to Launch:</p>
-          <div className="text-xl font-mono text-indigo-600 ">
-            {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
-          </div>
-        </div>
-
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          {/* Username Input */}
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-              Username
-            </label>
-            <input
-              type="text"
-              onChange={handleChange}
-              id="username"
-              name="username"
-              autoFocus
-              placeholder="Enter Your username..."
-              value={signupInfo.username}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-
-          {/* Email Input */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <input
-              onChange={handleChange}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Your Email..."
-              value={signupInfo.email}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-
-          {/* Password Input */}
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
-            <input
-              onChange={handleChange}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter Your password..."
-              value={signupInfo.password}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-
+        {/* Form */}
+        <form onSubmit={handleRegister} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+            required
+          />
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+            className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-green-600 transition"
           >
             Register
           </button>
-
-          <span className="block text-center text-sm text-gray-600 mt-4">
-            Already Have an Account?{' '}
-            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Login
-            </Link>
-          </span>
         </form>
 
-        <ToastContainer />
+        {/* Divider */}
+        <div className="my-6 flex items-center">
+          <div className="flex-1 h-px bg-gray-300"></div>
+          <span className="px-3 text-gray-500 text-sm">OR</span>
+          <div className="flex-1 h-px bg-gray-300"></div>
+        </div>
+
+        {/* Google Button */}
+        <button
+          onClick={handleGoogleRegister}
+          className="w-full bg-white border border-gray-300 py-3 rounded-lg flex items-center justify-center gap-3 hover:bg-gray-50 transition shadow-sm"
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+            className="w-6 h-6"
+          />
+          <span className="text-gray-700 font-medium">
+            Sign up with Google
+          </span>
+        </button>
+
+        {/* Footer */}
+        <p className="text-sm text-gray-500 text-center mt-6">
+          Already have an account?{" "}
+          <a
+            href="/login"
+            className="text-green-600 font-semibold hover:underline"
+          >
+            Log in
+          </a>
+        </p>
       </div>
+
+      {/* Toasts */}
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </div>
   );
 }
-
-export default Register;
