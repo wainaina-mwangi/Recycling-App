@@ -19,7 +19,7 @@ function Register() {
   });
 
   // Target launch date
-  const launchDate = new Date("2025-09-12T12:00:00").getTime();
+  const launchDate = new Date("2025-10-12T12:00:00").getTime();
 
   useEffect(() => {
     const interval = setInterval(() => {

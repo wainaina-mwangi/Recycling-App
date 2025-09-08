@@ -15,7 +15,7 @@ function Login() {
 
   // COUNTDOWN TIMER
   useEffect(() => {
-    const launchDate = new Date("2025-09-12T12:00:00").getTime();
+    const launchDate = new Date("2025-10-12T12:00:00").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
