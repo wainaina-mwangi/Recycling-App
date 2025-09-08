@@ -65,15 +65,15 @@ export default function HeroSlider() {
                 </motion.p>
 
                 <motion.a
-                  href="/report"
+                  href="/recyclers"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-white text-green-700 font-semibold rounded-full hover:bg-green-100 transition"
                   initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
-                  <Link to ='/recyclers'>
+                  
                   Find Recyclers <ArrowRight />
-                  </Link>
+                
                 </motion.a>
               </div>
             </motion.div>
