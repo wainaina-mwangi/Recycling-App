@@ -101,13 +101,13 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2 text-gray-300">
             <li className="flex items-center gap-2 hover:text-green-300 transition">
-              <ArrowRight size={16} /> <a href="/tips">Recycling Tips</a>
+              <ArrowRight size={16} /> <a href="https://www.earthday.org/7-tips-to-recycle-better/" target="_blank">Recycling Tips</a>
             </li>
             <li className="flex items-center gap-2 hover:text-green-300 transition">
-              <ArrowRight size={16} /> <a href="/guidelines">Guidelines</a>
+              <ArrowRight size={16} /> <a href="https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables" target="_blank">Guidelines</a>
             </li>
             <li className="flex items-center gap-2 hover:text-green-300 transition">
-              <ArrowRight size={16} /> <a href="/blog">Blog</a>
+              <ArrowRight size={16} /> <a href="https://recyclenation.com/blog/" target="_blank">Blog</a>
             </li>
           </ul>
         </motion.div>
