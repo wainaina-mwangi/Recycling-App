@@ -13,7 +13,8 @@ connectDB();
 const corsOptions = {
   origin: [
     'http://localhost:5173',           // Development URL
-    'https://recycling-app-eotz.vercel.app'  // Production URL
+    'https://recycling-app-eotz.vercel.app/'  // Production URL
+    
   ],
   credentials: true,  // Allow credentials
   optionsSuccessStatus: 200 // For older browsers
