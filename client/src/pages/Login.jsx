@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { loginUser, loginWithGoogle } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { ArrowLeft } from "lucide-react"; // <-- arrow icon
+import { ArrowLeft } from "lucide-react";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
@@ -15,7 +15,7 @@ export default function Login() {
     try {
       await loginUser(email, password);
       toast.success("✅ Logged in successfully!");
-      setTimeout(() => navigate("/dashboard"), 1500);
+      setTimeout(() => navigate("/Dashboard"), 1500);
     } catch (err) {
       toast.error(`❌ ${err.message}`);
     }
@@ -25,7 +25,7 @@ export default function Login() {
     try {
       await loginWithGoogle();
       toast.success("✅ Logged in with Google!");
-      setTimeout(() => navigate("/dashboard"), 1500);
+      setTimeout(() => navigate("/Dashboard"), 1500);
     } catch (err) {
       toast.error(`❌ ${err.message}`);
     }
