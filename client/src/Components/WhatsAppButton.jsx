@@ -9,9 +9,9 @@ export default function WhatsAppButton() {
       href={`https://wa.me/${phoneNumber}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all"
+      className="fixed bottom-3 right-5 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all"
     >
-      <MessageCircle size={24} />
+      <MessageCircle size={16} />
     </a>
   );
 }

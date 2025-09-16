@@ -13,7 +13,7 @@ import Loader from "./Components/Loader";
 import Community from "./pages/Community";
 import Recyclers from "./Components/Recyclers";
 import AIPanel from "./Components/AIPanel";
-import AIToggleButton from "./Components/AIToggleButton";
+import AISweetAlertButton from "./Components/AISweetAlertButton";
 import Pick from "./pages/Pick";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -41,7 +41,7 @@ const LayoutWrapper = () => {
     <div className="overflow-x-hidden">
       {!isAuthRoute && <Navbar />}
       <AIPanel/>
-      <AIToggleButton/>
+      <AISweetAlertButton/>
 
       <Routes>
         <Route path="/" element={<Homepage />} />

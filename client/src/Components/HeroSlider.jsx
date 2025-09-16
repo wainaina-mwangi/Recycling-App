@@ -1,4 +1,4 @@
-// src/components/HeroSection.jsx
+
 import { ArrowRight, Leaf } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,14 +6,15 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden">
-      {/* Background image with zoom animation */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('https://media.istockphoto.com/id/2156993014/photo/portrait-of-an-african-american-truck-driver.jpg?s=612x612&w=0&k=20&c=EKtoeRAup8Ftfos8C3Urx81Pa02a-oixObtkqqsLs_Q=')" }}
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 3, ease: "easeOut" }}
-      ></motion.div>
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="https://media.istockphoto.com/id/1023963786/photo/hand-holding-recycle-symbol-on-green-bokeh-background-eco-and-save-the-earth-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=e50JlfoudQrh5-VNtYwc8UWgUDK8kP1WwYXF355b9-Y=" // <-- replace with your video URL or local file
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
@@ -85,7 +86,7 @@ export default function HeroSection() {
             }}
             transition={{ duration: 0.6 }}
           >
-           <Link
+            <Link
               to="/recyclers"
               className="px-6 py-3 bg-green-500 text-white font-semibold rounded-full shadow-lg hover:bg-green-400 transition flex items-center justify-center gap-2"
             >

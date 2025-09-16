@@ -1,11 +1,15 @@
 import { useState } from "react";
 import {
-  ChevronDown,
   HelpCircle,
   Info,
   ShieldCheck,
   AlertTriangle,
   Truck,
+  MapPin,
+  UserPlus,
+  CreditCard,
+  Plus, 
+  Minus,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,6 +43,24 @@ const faqs = [
     answer:
       "You can resubmit after 12 hours or contact support directly for help.",
     icon: <AlertTriangle className="text-yellow-600 w-6 h-6" />,
+  },
+  {
+    question: "How can I track my pickup request?",
+    answer:
+      "After submitting your request, a recycler will be assigned, and you can track their location and estimated time of arrival on the 'My Requests' page.",
+    icon: <MapPin className="text-blue-600 w-6 h-6" />,
+  },
+  {
+    question: "Do I need to create an account?",
+    answer:
+      "While you can browse as a guest, creating an account allows you to track your requests, save your details for future pickups, and get personalized tips.",
+    icon: <UserPlus className="text-purple-600 w-6 h-6" />,
+  },
+  {
+    question: "How are recycling services paid for?",
+    answer:
+      "Our services are completely free for households. Businesses may have different pricing which can be viewed after creating a business account.",
+    icon: <CreditCard className="text-gray-600 w-6 h-6" />,
   },
 ];
 
@@ -75,11 +97,12 @@ export default function FAQs() {
                     {faq.icon}
                     <span>{faq.question}</span>
                   </div>
-                  <ChevronDown
-                    className={`w-6 h-6 transform transition-transform duration-200 ${
-                      isActive ? "rotate-180 text-green-600" : "text-gray-500"
-                    }`}
-                  />
+                
+                  {isActive ? (
+                    <Minus className="w-6 h-6 text-green-600" />
+                  ) : (
+                    <Plus className="w-6 h-6 text-gray-500" />
+                  )}
                 </button>
 
                 <AnimatePresence initial={false}>
