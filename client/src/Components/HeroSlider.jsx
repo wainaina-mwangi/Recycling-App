@@ -7,17 +7,12 @@ export default function HeroSection() {
   return (
     <section className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden">
       {/* Background video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src="https://media.istockphoto.com/id/1023963786/photo/hand-holding-recycle-symbol-on-green-bokeh-background-eco-and-save-the-earth-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=e50JlfoudQrh5-VNtYwc8UWgUDK8kP1WwYXF355b9-Y=" // <-- replace with your video URL or local file
-        autoPlay
-        loop
-        muted
-        playsInline
-      ></video>
+     
+      <img src="https://ik.imagekit.io/tba7zelzb/hero3.jpeg.jpg?updatedAt=1752762529811" alt=""  className="absolute inset-0 w-full h-full object-cover" />
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
+      
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl text-center px-6">
