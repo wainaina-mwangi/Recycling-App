@@ -49,7 +49,7 @@ export default function HeroSection() {
 
         {/* Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row md:py-3 gap-2 justify-center"
           initial="hidden"
           animate="visible"
           variants={{

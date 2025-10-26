@@ -48,10 +48,10 @@ export default function Footer() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-3 text-green-400">
+          <h2 className="text-2xl text-sm mb-3 text-green-400">
             RecyConnect
           </h2>
-          <p className="text-gray-400 mb-4">
+          <p className="text-gray-400 text-sm mb-4">
             Empowering communities to take action in waste reporting and
             recycling.
           </p>
@@ -70,10 +70,10 @@ export default function Footer() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h3 className="text-lg font-semibold mb-3 text-green-400">
+          <h3 className="text-lg text-sm mb-3 text-green-400">
             Quick Links
           </h3>
-          <ul className="space-y-2 text-gray-300">
+          <ul className="space-y-2 text-sm text-gray-300">
             {["About", "How It Works", "FAQs", "Contact"].map((link) => (
               <li
                 key={link}
@@ -96,10 +96,10 @@ export default function Footer() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h3 className="text-lg font-semibold mb-3 text-green-400">
+          <h3 className="text-lg text-sm mb-3 text-green-400">
             Resources
           </h3>
-          <ul className="space-y-2 text-gray-300">
+          <ul className="space-y-2 text-sm text-gray-300">
             <li className="flex items-center gap-2 hover:text-green-300 transition">
               <ArrowRight size={16} /> <a href="https://www.earthday.org/7-tips-to-recycle-better/" target="_blank">Recycling Tips</a>
             </li>
@@ -120,8 +120,8 @@ export default function Footer() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h3 className="text-lg font-semibold mb-3 text-green-400">Contact</h3>
-          <ul className="text-gray-300 space-y-2">
+          <h3 className="text-lg   text-sm mb-3 text-green-400">Contact</h3>
+          <ul className="text-gray-300 text-sm space-y-2">
             <li className="flex items-center gap-2">
               <MapPin size={18} /> Nairobi, Kenya
             </li>
@@ -142,10 +142,10 @@ export default function Footer() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          <h3 className="text-lg font-semibold mb-3 text-green-400">
+          <h3 className="text-lg text-sm mb-3 text-green-400">
             Newsletter
           </h3>
-          <p className="text-gray-400 mb-4">
+          <p className="text-gray-400 mb-4 text-sm">
             Stay updated with recycling tips and updates.
           </p>
           <form onSubmit={handleSubscribe} className="flex flex-col gap-3">

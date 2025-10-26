@@ -30,7 +30,7 @@ body{
 
 #how-it-works{
    font-size: large;
-   background-image: linear-gradient(to bottom right, rgb(14, 150, 43), rgba(155, 219, 146, 0));
+  background-image: linear-gradient(to bottom right, rgb(14, 150, 43), rgba(155, 219, 146, 0));
   background-size: cover;
   background-repeat: no-repeat;
 }
