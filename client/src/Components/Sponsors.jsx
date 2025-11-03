@@ -35,7 +35,7 @@ export default function Sponsors() {
   return (
     <section
       id="sponsors"
-      className="py-20 bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="py-20  bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
@@ -70,7 +70,7 @@ export default function Sponsors() {
           {sponsors.map((sponsor) => (
             <SwiperSlide key={sponsor.id}>
               <motion.div
-                className="flex justify-center items-center h-24"
+                className="flex justify-center items-center h-30"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4 }}
