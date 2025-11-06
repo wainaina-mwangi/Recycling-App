@@ -12,7 +12,7 @@ export default function About() {
           viewport={{ once: true }}
           className="w-full"
         >
-          <div className="overflow-hidden rounded-3xl shadow-lg border border-green-200 dark:border-green-600">
+          <div className="overflow-hidden rounded-5gitxl shadow-lg border border-green-200 dark:border-green-600">
             <img
               src="https://ik.imagekit.io/tba7zelzb/about.jpeg.png?updatedAt=1752762540645"
               alt="About RecyConnect"

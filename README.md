@@ -4,7 +4,7 @@ A web application that allows users to report littering, find nearby recycling s
 ## 🌍 Project Goal
 
 To empower communities to **reduce waste**, **track recycling efforts**, and **report littering** incidents for a cleaner and greener environment in Kenya.
-![image alt](https://github.com/wainaina-mwangi/Recycling-App/blob/f2aa4d9fedd7feb9a4cd61dd8c390aa813be3baf/homepage.jpg)
+![image alt](https://github.com/wainaina-mwangi/Recycling-App/blob/a39b7ef5d88a11ad29df341d74c22268c92a94a6/screenshot/Screenshot%202025-11-06%20044710.jpg)
 
 
 <div align="start"> <a href="./frontend/README.md"> <img src="https://img.shields.io/badge/Recycling-App-32CD32?style=for-the-badge&labelColor=green" alt="Recycling App Badge" /> </a>
