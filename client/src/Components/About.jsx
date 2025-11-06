@@ -29,7 +29,7 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center md:text-left"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-6 leading-tight">
+          <h2 className="text-4xl bg-green-300 px-3 border-2 md:text-5xl font-bold text-gray-800 dark:text-white mb-6 leading-tight">
             Empowering Waste Responsibility
           </h2>
 
@@ -42,7 +42,7 @@ export default function About() {
             to report litter, request eco-friendly waste pickups, and easily connect with certified recyclers in their area.
           </p>
 
-          <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-gray-600 bg-green-300 px-3 py-2 dark:text-gray-400 mb-4">
             We bridge the gap between communities and green initiatives, making it easier than ever
             to contribute to cleaner, safer, and more responsible environments.
           </p>
