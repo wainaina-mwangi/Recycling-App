@@ -35,7 +35,7 @@ export default function Sponsors() {
   return (
     <section
       id="sponsors"
-      className="py-20  bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="py-20   bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
