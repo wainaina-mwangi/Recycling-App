@@ -1,128 +1,134 @@
 import { useState } from "react";
-import {
-  HelpCircle,
-  Info,
-  ShieldCheck,
-  AlertTriangle,
-  Truck,
-  MapPin,
-  UserPlus,
-  CreditCard,
-  Plus, 
-  Minus,
+import { 
+  HelpCircle, ShieldCheck, Truck, MapPin, 
+  UserPlus, CreditCard, ChevronDown, MessageCircle 
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const categories = ["All", "General", "Services", "Security", "Billing"];
 
 const faqs = [
   {
     question: "How do I report littering?",
-    answer:
-      "Click on 'Report Litter' in the navbar, fill the form, and optionally upload a photo or pin the location.",
-    icon: <HelpCircle className="text-green-600 w-6 h-6" />,
+    answer: "Click on 'Report Litter' in the navbar, fill the form, and optionally upload a photo or pin the location.",
+    icon: <HelpCircle />,
+    category: "General"
   },
   {
     question: "Can I schedule a waste pickup?",
-    answer:
-      "Yes! Just go to the 'Request Pickup' section and submit your location and type of waste.",
-    icon: <Truck className="text-green-600 w-6 h-6" />,
+    answer: "Yes! Just go to the 'Request Pickup' section and submit your location and type of waste.",
+    icon: <Truck />,
+    category: "Services"
   },
   {
     question: "Is my information secure?",
-    answer:
-      "Absolutely. We use secure authentication and don’t share your data without permission.",
-    icon: <ShieldCheck className="text-green-600 w-6 h-6" />,
+    answer: "Absolutely. We use secure authentication and don’t share your data without permission.",
+    icon: <ShieldCheck />,
+    category: "Security"
   },
   {
-    question: "What items can I recycle?",
-    answer:
-      "We support plastics, glass, paper, metal, and e-waste. You can check guidelines in the ‘Tips’ section.",
-    icon: <Info className="text-green-600 w-6 h-6" />,
+    question: "How can I track my pickup?",
+    answer: "You can track your assigned recycler's location on the 'My Requests' page.",
+    icon: <MapPin />,
+    category: "Services"
   },
   {
-    question: "What if no recycler picks my request?",
-    answer:
-      "You can resubmit after 12 hours or contact support directly for help.",
-    icon: <AlertTriangle className="text-yellow-600 w-6 h-6" />,
+    question: "Do I need an account?",
+    answer: "You can browse as a guest, but an account lets you track history and earn points.",
+    icon: <UserPlus />,
+    category: "General"
   },
   {
-    question: "How can I track my pickup request?",
-    answer:
-      "After submitting your request, a recycler will be assigned, and you can track their location and estimated time of arrival on the 'My Requests' page.",
-    icon: <MapPin className="text-blue-600 w-6 h-6" />,
-  },
-  {
-    question: "Do I need to create an account?",
-    answer:
-      "While you can browse as a guest, creating an account allows you to track your requests, save your details for future pickups, and get personalized tips.",
-    icon: <UserPlus className="text-purple-600 w-6 h-6" />,
-  },
-  {
-    question: "How are recycling services paid for?",
-    answer:
-      "Our services are completely free for households. Businesses may have different pricing which can be viewed after creating a business account.",
-    icon: <CreditCard className="text-gray-600 w-6 h-6" />,
-  },
+    question: "How are services paid for?",
+    answer: "Our services are free for households. Businesses have custom eco-plans.",
+    icon: <CreditCard />,
+    category: "Billing"
+  }
 ];
 
 export default function FAQs() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
+  const filteredFaqs = selectedCategory === "All" 
+    ? faqs 
+    : faqs.filter(f => f.category === selectedCategory);
 
   return (
-    <section className="py-20 mt-6 bg-gradient-to-br from-green-50 via-white to-green-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300" id="faq">
-      <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
-          Frequently Asked Questions
-        </h2>
+    <section className="py-24 px-6 bg-white dark:bg-gray-950">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Header & Filter */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-black text-stone-900 dark:text-white mb-8">
+            Common <span className="text-emerald-600">Questions</span>
+          </h2>
+          
+          {/* Category Pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => { setSelectedCategory(cat); setActiveIndex(null); }}
+                className={`px-6 py-2 rounded-full font-bold transition-all ${
+                  selectedCategory === cat 
+                  ? "bg-emerald-600 text-white shadow-lg shadow-emerald-200" 
+                  : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-gray-800 dark:text-gray-400"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
 
-        <div className="space-y-6">
-          {faqs.map((faq, index) => {
-            const isActive = activeIndex === index;
-            return (
+        {/* Two-Column Masonry Style Grid */}
+        <div className="columns-1 md:columns-2 gap-6 space-y-6">
+          <AnimatePresence mode="popLayout">
+            {filteredFaqs.map((faq, index) => (
               <motion.div
-                key={index}
                 layout
-                className={`rounded-2xl overflow-hidden shadow-md transition-all duration-300 ${
-                  isActive ? "bg-white dark:bg-gray-800 border-l-4 border-green-600" : "bg-gray-50 dark:bg-gray-700"
+                key={faq.question}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className={`break-inside-avoid rounded-[2rem] border transition-all duration-300 ${
+                  activeIndex === index 
+                  ? "bg-stone-900 text-white border-stone-900 shadow-2xl" 
+                  : "bg-stone-50 border-stone-100 dark:bg-gray-900 dark:border-gray-800"
                 }`}
               >
                 <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between px-6 py-4 text-left"
+                  onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                  className="w-full p-8 text-left flex items-start justify-between gap-4"
                 >
-                  <div className="flex items-center gap-4 text-lg text-gray-800 dark:text-gray-100 font-medium">
-                    {faq.icon}
-                    <span>{faq.question}</span>
+                  <div className="flex gap-4">
+                    <div className={`p-2 rounded-lg ${activeIndex === index ? "bg-emerald-500" : "bg-emerald-100 text-emerald-600"}`}>
+                      {faq.icon}
+                    </div>
+                    <span className="font-bold text-lg leading-tight">{faq.question}</span>
                   </div>
-                
-                  {isActive ? (
-                    <Minus className="w-6 h-6 text-green-600" />
-                  ) : (
-                    <Plus className="w-6 h-6 text-gray-500" />
-                  )}
+                  <ChevronDown className={`shrink-0 transition-transform ${activeIndex === index ? "rotate-180" : ""}`} />
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isActive && (
+                <AnimatePresence>
+                  {activeIndex === index && (
                     <motion.div
-                      key="faq-content"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-6 pb-6 text-gray-600 dark:text-gray-300 text-sm"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="px-8 pb-8 -mt-2 text-stone-400 leading-relaxed"
                     >
                       {faq.answer}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
-            );
-          })}
+            ))}
+          </AnimatePresence>
         </div>
+
+       
       </div>
     </section>
   );

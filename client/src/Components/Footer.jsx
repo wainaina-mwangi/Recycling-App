@@ -1,180 +1,138 @@
 import {
-  Mail,
-  MapPin,
-  Phone,
-  ArrowRight,
-  Facebook,
-  Twitter,
-  Instagram,
+  Mail, MapPin, Phone, ArrowRight, Facebook, Twitter, Instagram, Leaf
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const footerVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.2 },
-  }),
-};
-
 export default function Footer() {
   const [email, setEmail] = useState("");
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    toast.success("You’ve subscribed to our newsletter!", {
-      position: "top-right",
+    toast.success("Welcome to the green movement!", {
+      position: "bottom-center",
       autoClose: 3000,
+      theme: "dark"
     });
     setEmail("");
   };
 
   return (
-    <footer className="relative text-white pt-16 px-6 bg-gray-900 overflow-hidden">
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-700/20 via-green-500/10 to-green-600/20 opacity-30 pointer-events-none animate-pulse"></div>
+    <footer className="relative bg-[#0a1a12] pt-24 pb-12 overflow-hidden">
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+      <Leaf className="absolute -bottom-10 -left-10 w-64 h-64 text-emerald-900/10 rotate-12" />
 
-      {/* Content Wrapper */}
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
-        {/* Brand Info */}
-        <motion.div
-          variants={footerVariants}
-          custom={0}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Top Section: Newsletter Card */}
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          className="bg-emerald-600 rounded-[3rem] p-8 md:p-12 mb-20 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl shadow-emerald-900/20"
         >
-          <h2 className="text-2xl text-sm mb-3 text-green-400">
-            RecyConnect
-          </h2>
-          <p className="text-gray-400 text-sm mb-4">
-            Empowering communities to take action in waste reporting and
-            recycling.
-          </p>
-          <div className="flex gap-3">
-            <Facebook className="hover:text-green-400 transition" />
-            <Twitter className="hover:text-green-400 transition" />
-            <Instagram className="hover:text-green-400 transition" />
+          <div className="max-w-md text-center lg:text-left">
+            <h3 className="text-3xl font-black text-white mb-2">Join the Green List</h3>
+            <p className="text-emerald-50 opacity-90">Get weekly tips on zero-waste living and platform updates.</p>
           </div>
-        </motion.div>
-
-        {/* Quick Links */}
-        <motion.div
-          variants={footerVariants}
-          custom={1}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg text-sm mb-3 text-green-400">
-            Quick Links
-          </h3>
-          <ul className="space-y-2 text-sm text-gray-300">
-            {["About", "How It Works", "FAQs", "Contact"].map((link) => (
-              <li
-                key={link}
-                className="flex items-center gap-2 hover:text-green-300 transition"
-              >
-                <ArrowRight size={16} />
-                <a href={`#${link.toLowerCase().replace(/\s/g, "-")}`}>
-                  {link}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* Resources */}
-        <motion.div
-          variants={footerVariants}
-          custom={2}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg text-sm mb-3 text-green-400">
-            Resources
-          </h3>
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li className="flex items-center gap-2 hover:text-green-300 transition">
-              <ArrowRight size={16} /> <a href="https://www.earthday.org/7-tips-to-recycle-better/" target="_blank">Recycling Tips</a>
-            </li>
-            <li className="flex items-center gap-2 hover:text-green-300 transition">
-              <ArrowRight size={16} /> <a href="https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables" target="_blank">Guidelines</a>
-            </li>
-            <li className="flex items-center gap-2 hover:text-green-300 transition">
-              <ArrowRight size={16} /> <a href="https://recyclenation.com/blog/" target="_blank">Blog</a>
-            </li>
-          </ul>
-        </motion.div>
-
-        {/* Contact Info */}
-        <motion.div
-          variants={footerVariants}
-          custom={3}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg   text-sm mb-3 text-green-400">Contact</h3>
-          <ul className="text-gray-300 text-sm space-y-2">
-            <li className="flex items-center gap-2">
-              <MapPin size={18} /> Nairobi, Kenya
-            </li>
-            <li className="flex items-center gap-2">
-              <Phone size={18} /> +254 712 345 678
-            </li>
-            <li className="flex items-center gap-2">
-              <Mail size={18} /> info@recyconnect.org
-            </li>
-          </ul>
-        </motion.div>
-
-        {/* Newsletter */}
-        <motion.div
-          variants={footerVariants}
-          custom={4}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-lg text-sm mb-3 text-green-400">
-            Newsletter
-          </h3>
-          <p className="text-gray-400 mb-4 text-sm">
-            Stay updated with recycling tips and updates.
-          </p>
-          <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row w-full lg:w-auto gap-3">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
+              className="px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-emerald-100 focus:outline-none focus:ring-2 focus:ring-white/50 w-full sm:w-80 backdrop-blur-md"
               required
-              className="px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
-            <button
-              type="submit"
-              className="bg-green-600 hover:bg-green-500 transition text-white rounded-md py-2 font-medium shadow-md"
-            >
-              Subscribe
+            <button className="px-8 py-4 bg-white text-emerald-700 font-bold rounded-2xl hover:bg-emerald-50 transition-all flex items-center justify-center gap-2">
+              Subscribe <ArrowRight size={18} />
             </button>
           </form>
         </motion.div>
+
+        {/* Main Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          
+          {/* Brand */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-emerald-500 rounded-lg">
+                <Leaf className="text-white w-5 h-5" />
+              </div>
+              <span className="text-2xl font-black text-white tracking-tight">RecyConnect</span>
+            </div>
+            <p className="text-stone-400 leading-relaxed text-sm">
+              Kenya's leading platform for circular economy. We make recycling as simple as a single tap.
+            </p>
+            <div className="flex gap-4">
+              {[Facebook, Twitter, Instagram].map((Icon, i) => (
+                <a key={i} href="#" className="w-10 h-10 rounded-full bg-stone-900 flex items-center justify-center text-stone-400 hover:bg-emerald-500 hover:text-white transition-all">
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Explore</h4>
+            <ul className="space-y-4 text-sm">
+              {["About Us", "How It Works", "Partner with Us", "FAQs"].map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-stone-400 hover:text-emerald-400 transition-colors flex items-center gap-2 group">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-800 group-hover:bg-emerald-400 transition-colors" />
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Resources</h4>
+            <ul className="space-y-4 text-sm text-stone-400">
+              <li><a href="#" className="hover:text-emerald-400">Recycling Guidelines</a></li>
+              <li><a href="#" className="hover:text-emerald-400">Impact Reports</a></li>
+              <li><a href="#" className="hover:text-emerald-400">Community Stories</a></li>
+              <li><a href="#" className="hover:text-emerald-400">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-bold mb-6">Contact</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3 text-stone-400">
+                <MapPin className="text-emerald-500 w-5 h-5 shrink-0" />
+                <span>Nairobi, Kenya<br />Green Space Plaza, 4th Floor</span>
+              </li>
+              <li className="flex items-center gap-3 text-stone-400">
+                <Phone className="text-emerald-500 w-5 h-5 shrink-0" />
+                <span>+254 712 345 678</span>
+              </li>
+              <li className="flex items-center gap-3 text-stone-400">
+                <Mail className="text-emerald-500 w-5 h-5 shrink-0" />
+                <span>hello@recyconnect.org</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-stone-500 text-xs">
+            © {new Date().getFullYear()} RecyConnect. Built for a sustainable Kenya.
+          </p>
+          <div className="flex gap-8 text-xs text-stone-500 font-medium">
+            <a href="#" className="hover:text-white">Terms of Service</a>
+            <a href="#" className="hover:text-white">Cookie Policy</a>
+          </div>
+        </div>
       </div>
-
-      {/* Divider */}
-      <hr className="my-10 border-gray-700 relative z-10" />
-
-      {/* Bottom */}
-      <div className="text-center text-sm text-gray-500 pb-6 relative z-10">
-        &copy; {new Date().getFullYear()} RecyConnect. All rights reserved.
-      </div>
-
+      
       <ToastContainer />
     </footer>
   );

@@ -1,148 +1,96 @@
 import { ArrowRight, Leaf } from "lucide-react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import RegistrationForm from "./RegistrationForm";
 import ReportModal from "./ReportModal";
 import { useState } from "react";
 
-
-const HeroButton = ({ to, onClick, children }) => (
-  <motion.div
-    initial={{ y: 20, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ duration: 0.6 }}
-  >
-    {onClick ? (
-      <button
-        onClick={onClick}
-        className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow-xl hover:bg-green-500 transition duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-green-400 focus:ring-opacity-50 flex items-center justify-center gap-2 min-w-[180px]"
-      >
-        {children}
-        <ArrowRight className="w-5 h-5 ml-1" />
-      </button>
-    ) : (
-      <Link
-        to={to}
-        className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow-xl hover:bg-green-500 transition duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-green-400 focus:ring-opacity-50 flex items-center justify-center gap-2 min-w-[180px]"
-      >
-        {children}
-        <ArrowRight className="w-5 h-5 ml-1" />
-      </Link>
-    )}
-    {" "}
-  </motion.div>
-);
-
-const HeroBackground = () => (
-  <>
-    <motion.div
-      className="absolute inset-0 z-0"
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-      }}
-      style={{
-        background:
-          "linear-gradient(45deg, #0f172a, #16a34a, #0f172a, #34d399)",
-        backgroundSize: "400% 400%",
-      }}
-      transition={{
-        opacity: { duration: 1.5, ease: "easeOut" },
-        backgroundPosition: {
-          duration: 20,
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop",
-        },
-      }}
-    />
-    {" "}
-    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10"></div> 
-    {" "}
-  </>
-);
-// --- Main Hero Section ---
-
+// --- Simplified Hero Section ---
 export default function HeroSection() {
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.5,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
 
   return (
-    <section
-      // Added curved-bottom class and z-index back for visual curve and stacking context
-      className="relative curved-bottom z-10 w-full min-h-[70vh] flex items-center justify-center overflow-hidden py-24 md:py-32 bg-slate-900"
-    >
-       <HeroBackground />
-      <div className="relative z-20 w-full px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="relative w-full min-h-[80vh] flex items-center bg-stone-50 overflow-hidden py-20">
+      {/* Background Decoration: Subtle Green Glow */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-50/50 -skew-x-12 transform translate-x-20 z-0" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* LEFT COLUMN: Text and Buttons */}
-          <motion.div
-          
+          {/* LEFT COLUMN: Text & Action */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-        
-            {/* Icon (assuming this is where Leaf is) */}
-            <motion.div
-              className="flex justify-center lg:justify-start mb-6"
-              initial={{ scale: 0, rotate: -90, opacity: 0 }}
-              animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "backOut" }}
-            >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 mb-6">
+              <Leaf className="w-4 h-4" />
+              <span className="text-sm font-bold uppercase tracking-wider">Eco-Friendly Initiative</span>
+            </div>
             
-              <Leaf className="text-green-400 w-14 h-14 drop-shadow-xl" />
-              
-            </motion.div>
-             {/* Heading (Fixing size) */}
-            <motion.h1
-              className="text-5xl sm:text-5xl font-semibold text-white mb-6 leading-snug drop-shadow-xl"
-              variants={itemVariants}
-            >
-             A Cleaner Future  Starts With You 
-            </motion.h1>
-            {/* Paragraph */}
-            <motion.p
-              className="text-xl md:text-1xl text-gray-200 mb-12 leading-relaxed"
-              variants={itemVariants}
-            >
+            <h1 className="text-5xl md:text-6xl font-extrabold text-stone-900 mb-6 leading-tight">
+              A Cleaner Future <br /> 
+              <span className="text-emerald-600">Starts With You</span>
+            </h1>
+            
+            <p className="text-lg text-stone-600 mb-10 max-w-lg leading-relaxed">
               Report litter, request eco-friendly pickups, and connect with
               local recyclers. Join the movement for a sustainable tomorrow.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              variants={itemVariants}
+            </p>
+
+            <button
+              onClick={() => setIsReportModalOpen(true)}
+              className="group flex items-center gap-3 bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:bg-emerald-700 transition-all transform hover:-translate-y-1"
             >
-              {/* Now passing the onClick handler to open the modal */}
-              <HeroButton onClick={() => setIsReportModalOpen(true)}>
-                Report Litter
-              </HeroButton>
-            </motion.div>
+              Report Litter Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
           </motion.div>
-          {/* RIGHT COLUMN: Registration Form */}
-          <div className="mt-12 lg:mt-0">
-            <RegistrationForm />
+
+          {/* RIGHT COLUMN: Three Picture Grid */}
+          <div className="relative grid grid-cols-2 gap-4">
+            {/* Large Image */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="col-span-1 row-span-2"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=600" 
+                alt="Recycling Bin" 
+                className="w-full h-[450px] object-cover rounded-3xl shadow-2xl"
+              />
+            </motion.div>
+            
+            {/* Top Small Image */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=400" 
+                alt="Nature Growth" 
+                className="w-full h-[215px] object-cover rounded-3xl shadow-xl"
+              />
+            </motion.div>
+
+            {/* Bottom Small Image */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=400" 
+                alt="Sorting Waste" 
+                className="w-full h-[215px] object-cover rounded-3xl shadow-xl"
+              />
+            </motion.div>
           </div>
+
         </div>
       </div>
-      {/* Report Modal (Positioned at the end) */}
+
       <ReportModal
         isOpen={isReportModalOpen}
         onClose={() => setIsReportModalOpen(false)}
