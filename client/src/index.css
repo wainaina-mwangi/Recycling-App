@@ -25,7 +25,11 @@ body{
    font-family: "Nunito Sans", sans-serif;
   font-weight: 900;
   font-size: medium;
+  @apply transition-colors duration-500 bg-white dark:bg-gray-950;
 }
+
+
+
 
 
 #how-it-works{
