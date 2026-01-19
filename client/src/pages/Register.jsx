@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { registerUser, loginWithGoogle } from "../services/authService";
 import { toast, ToastContainer } from "react-toastify";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft, UserPlus, Mail, ShieldCheck, Sparkles } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
@@ -14,8 +15,7 @@ export default function Register() {
     e.preventDefault();
     try {
       await registerUser(email, password);
-      toast.success("🎉 Registered successfully! Redirecting...");
-      // The onAuthStateChanged listener will handle the actual navigation
+      toast.success("🎉 Account Created! Welcome to the mission.");
     } catch (err) {
       toast.error(`❌ ${err.message}`);
     }
@@ -24,121 +24,152 @@ export default function Register() {
   const handleGoogleRegister = async () => {
     try {
       await loginWithGoogle();
-      toast.success("🎉 Registered with Google! Redirecting...");
-      // The onAuthStateChanged listener will handle the actual navigation
+      toast.success("🎉 Google Sign-up Successful!");
     } catch (err) {
       toast.error(`❌ ${err.message}`);
     }
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white relative">
-
-      {/* Back to Home button (visible on both sides) */}
-      <button
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-gray-950 transition-colors duration-500">
+      
+      {/* --- FLOATING HOME BUTTON --- */}
+      <motion.button
+        whileHover={{ x: -5 }}
         onClick={() => navigate("/")}
-        className="absolute top-6 left-6 text-gray-600 hover:text-green-700 transition flex items-center gap-2 z-10 font-medium"
+        className="absolute top-8 left-8 text-emerald-600 dark:text-emerald-500 flex items-center gap-2 z-20 font-black text-xs uppercase tracking-widest"
       >
-        <ArrowLeft size={24} />
-        <span className="hidden sm:inline">Home</span>
-      </button>
+        <ArrowLeft size={18} strokeWidth={3} />
+        Home
+      </motion.button>
 
-      <div className="flex items-center justify-center p-8 lg:p-12">
-        <div className="w-full max-w-lg bg-white p-4">
-          
-          <h2 className="text-4xl font-extrabold text-green-700 text-center mb-2">
-            Create Account
-          </h2>
-          <form onSubmit={handleRegister} className="space-y-6">
-            <input
-              type="email"
-              placeholder="Your Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              // Enhanced styling for inputs
-              className="w-full p-4 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-100 focus:border-green-400 focus:outline-none transition duration-300"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Create Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              // Enhanced styling for inputs
-              className="w-full p-4 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-100 focus:border-green-400 focus:outline-none transition duration-300"
-              required
-            />
+      {/* --- LEFT SIDE: THE CONTENT --- */}
+      <div className="flex items-center justify-center p-8 lg:p-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-md"
+        >
+          <div className="mb-10">
+            <h2 className="text-5xl font-black text-gray-900 dark:text-white leading-none mb-4">
+              Join the <br />
+              <span className="text-emerald-500 text-6xl">Movement.</span>
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400 font-medium">
+              Create your account to start tracking your environmental impact in Kenya.
+            </p>
+          </div>
+
+          <form onSubmit={handleRegister} className="space-y-5">
+            <div className="space-y-1">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-800 dark:text-emerald-500 ml-1">Work Email</label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <input
+                  type="email"
+                  placeholder="name@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border-2 border-transparent focus:border-emerald-500 focus:bg-white dark:focus:bg-gray-800 outline-none transition-all dark:text-white font-medium shadow-sm"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-800 dark:text-emerald-500 ml-1">Password</label>
+              <div className="relative">
+                <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                <input
+                  type="password"
+                  placeholder="Min. 8 characters"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border-2 border-transparent focus:border-emerald-500 focus:bg-white dark:focus:bg-gray-800 outline-none transition-all dark:text-white font-medium shadow-sm"
+                  required
+                />
+              </div>
+            </div>
+
             <button
               type="submit"
-              // Enhanced styling for the main button
-              className="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-[1.01]"
+              className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black text-lg shadow-xl shadow-emerald-500/20 hover:bg-emerald-500 active:scale-[0.98] transition-all flex items-center justify-center gap-3 mt-4"
             >
-              Create Account
+              CREATE FREE ACCOUNT <UserPlus size={20} />
             </button>
           </form>
 
           {/* Divider */}
-          <div className="my-8 flex items-center">
-            <div className="flex-1 h-px bg-gray-200"></div>
-            <span className="px-4 text-gray-500 font-semibold text-sm tracking-wider">OR</span>
-            <div className="flex-1 h-px bg-gray-200"></div>
+          <div className="my-8 flex items-center gap-4">
+            <div className="flex-1 h-[2px] bg-gray-100 dark:bg-gray-800"></div>
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Trust the Process</span>
+            <div className="flex-1 h-[2px] bg-gray-100 dark:bg-gray-800"></div>
           </div>
 
           {/* Google Button */}
           <button
             onClick={handleGoogleRegister}
-            className="w-full bg-white border border-gray-300 py-3 rounded-xl flex items-center justify-center gap-3 hover:bg-green-50 transition duration-300 shadow-md"
+            className="w-full bg-white dark:bg-gray-950 border-2 border-gray-100 dark:border-gray-800 py-4 rounded-2xl flex items-center justify-center gap-3 hover:border-emerald-500 hover:bg-emerald-50/10 transition-all group"
           >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"
               alt="Google"
-              className="w-7 h-7"
+              className="w-6 h-6 group-hover:scale-110 transition-transform"
             />
-            <span className="text-gray-700 font-semibold text-md">
+            <span className="text-gray-700 dark:text-gray-300 font-bold">
               Sign up with Google
             </span>
           </button>
 
-          {/* Footer */}
-          <p className="text-md text-gray-500 text-center mt-8">
-            Already have an account?{" "}
-            <a
-              href="/login"
-              className="text-green-600 font-bold hover:text-green-700 hover:underline transition duration-300"
-            >
-              Log in here
-            </a>
+          <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-10 font-medium">
+            Already a member?{" "}
+            <Link to="/login" className="text-emerald-600 dark:text-emerald-400 font-black hover:underline underline-offset-4">
+              Login here
+            </Link>
           </p>
+        </motion.div>
+      </div>
+
+      {/* --- RIGHT SIDE: THE VISUAL --- */}
+      <div className="hidden h-full lg:flex items-center justify-center p-8 bg-emerald-950 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-emerald-500/20 blur-[80px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-green-500/20 blur-[80px] rounded-full" />
+
+        <div className="relative z-10 text-white p-8 max-w-lg text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest mb-8 border border-white/10">
+              <Sparkles size={14} /> 100% Kenyan Initiative
+            </div>
+            
+            <h1 className="text-6xl font-black mb-8 leading-[0.9]">
+              Build a <br />
+              <span className="text-emerald-400 italic font-light tracking-tighter">Greener</span> <br />
+              Future.
+            </h1>
+            
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-green-400 rounded-3xl blur opacity-25"></div>
+              <img 
+                src="https://ik.imagekit.io/tba7zelzb/hero2.jpeg.jpg?updatedAt=1752762531878" 
+                alt="Green Living" 
+                className="relative w-full h-auto object-cover rounded-[2rem] shadow-2xl grayscale-[20%] group-hover:grayscale-0 transition duration-700 border border-white/10"
+              />
+            </div>
+
+            <div className="mt-8 flex items-center justify-between px-2">
+              <p className="text-emerald-100/60 font-medium text-sm">Join over 15k+ contributors</p>
+              <div className="h-px w-24 bg-white/20"></div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      
-      <div className="hidden h-full lg:flex items-center justify-center p-4 bg-gradient-to-tl from-green-500 to-green-300">
-        <div className="text-white text-center p-8">
-          <h1 className="text-5xl font-extrabold mb-6 leading-tight">
-            Build a <span className="text-green-900">Greener</span> Future
-          </h1>
-          <p className="text-xl font-light mb-8 opacity-90">
-            Track your impact, save the planet, one step at a time.
-          </p>
-          <img 
-            src="https://ik.imagekit.io/tba7zelzb/hero2.jpeg.jpg?updatedAt=1752762531878" 
-            alt="Beautiful green landscape and clean energy" 
-            className="w-full h-auto max-h-[80vh] object-cover rounded-3xl shadow-2xl border-4 border-white border-opacity-30"
-          />
-        </div>
-      </div>
-
-      {/* Toasts */}
-      <ToastContainer
-        position="top-right"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        pauseOnHover
-        draggable
-      />
+      <ToastContainer theme="dark" position="bottom-left" />
     </div>
   );
 }
