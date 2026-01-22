@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import Loader from "./Components/Loader.jsx";
 import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from "./Components/ThemeContext";
 import "./index.css";
 
 function Main() {
@@ -22,8 +23,10 @@ function Main() {
   return loading ? <Loader /> : <App />;
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App/>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );

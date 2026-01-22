@@ -1,4 +1,4 @@
-// src/components/Loader.jsx
+
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -9,7 +9,7 @@ export default function Loader() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-        className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full mb-6"
+        className="w-24 h-24 border-4 border-green-600 border-t-transparent rounded-full mb-6"
       />
 
       {/* Heading */}
@@ -19,7 +19,7 @@ export default function Loader() {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="text-2xl font-bold text-green-700 dark:text-green-400"
       >
-        Welcome to RecyConnect
+        Loading ...
       </motion.h1>
 
       {/* Slogan */}

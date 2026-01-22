@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { ThemeProvider, useTheme } from "./Components/ThemeContext";
 
 import Navbar from "./Components/Navbar";
-// ... other imports ...
 import Loader from "./Components/Loader";
 import Homepage from "./pages/Homepage";
 import About from "./Components/About";
@@ -26,8 +25,6 @@ import Footer from "./Components/Footer";
 const LayoutWrapper = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-  
-  // 2. Access the theme state
   const { isDarkMode } = useTheme();
 
   const isAuthRoute = location.pathname === "/login" || location.pathname === "/register";
@@ -40,8 +37,8 @@ const LayoutWrapper = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className={isDarkMode ? "dark-theme" : "light-theme"}>
-      <div className="overflow-x-hidden">
+    <div className={isDarkMode ? "dark" : ""}> 
+      <div className="min-h-screen bg-white dark:bg-gray-950 text-black dark:text-white overflow-x-hidden">
         {!isAuthRoute && <Navbar />}
         <AIPanel />
 
@@ -75,11 +72,8 @@ const LayoutWrapper = () => {
 
 export default function App() {
   return (
-    // 4. Wrap everything in the Provider
-    <ThemeProvider>
-      <Router>
-        <LayoutWrapper />
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <LayoutWrapper />
+    </Router>
   );
 }
