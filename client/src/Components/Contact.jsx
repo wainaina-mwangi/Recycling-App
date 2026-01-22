@@ -74,7 +74,7 @@ export default function Contact() {
                 <input
                   {...register("name", { required: "Name is required" })}
                   placeholder="Enter your full name"
-                  className="w-full px-5 py-4 bg-emerald-50 border-2 border-transparent focus:border-emerald-500 rounded-2xl outline-none transition-all text-emerald-900 placeholder:text-emerald-200"
+                  className="w-full px-5 py-4 bg-emerald-50 border-2 border-transparent focus:border-emerald-500 rounded-2xl outline-none transition-all text-emerald-200 placeholder:text-emerald-200"
                 />
               </div>
 

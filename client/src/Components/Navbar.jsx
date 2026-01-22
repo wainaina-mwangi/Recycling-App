@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, BaggageClaim, SunIcon, MoonIcon } from "lucide-react";
 import { NavbarMenu } from "../mockData/data";
 import { Link, NavLink, useLocation } from "react-router-dom";
-
 import { useTheme } from "./ThemeContext"; 
 
 const DesktopNavLink = ({ item, isScrolled }) => {
@@ -35,8 +34,6 @@ const DesktopNavLink = ({ item, isScrolled }) => {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
-  // 2. Access the global theme state and toggle function
   const { isDarkMode, toggleTheme } = useTheme();
 
   // Scroll Effect
@@ -81,7 +78,7 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* Auth + Theme Toggle */}
+        {/* Auth + Theme Toggle (Desktop) */}
         <div className="hidden md:flex items-center gap-2">
           <button
             onClick={toggleTheme}
@@ -91,7 +88,6 @@ export default function Navbar() {
                 : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             }`}
           >
-            {/* 4. Use isDarkMode from Context to show the correct icon */}
             {isDarkMode ? (
               <SunIcon size={20} className={scrolled ? "text-white" : "text-yellow-400"} />
             ) : (
@@ -123,23 +119,79 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle Controls */}
         <div className="flex items-center md:hidden gap-2">
-           {/* Mobile Theme Toggle (optional, adding for convenience) */}
-           <button onClick={toggleTheme} className={`p-2 ${scrolled ? "text-white" : "text-gray-800 dark:text-white"}`}>
+           <button 
+             onClick={toggleTheme} 
+             className={`p-2 rounded-full ${scrolled ? "text-white hover:bg-white/20" : "text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"}`}
+           >
             {isDarkMode ? <SunIcon size={20} className="text-yellow-400" /> : <MoonIcon size={20} />}
           </button>
 
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 rounded-md ${scrolled ? "text-white" : "text-gray-800 dark:text-white"}`}
+            className={`p-2 rounded-md transition-colors ${scrolled ? "text-white hover:bg-white/20" : "text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"}`}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu ... (remains same) */}
+      {/* Mobile Menu Panel */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden bg-white dark:bg-gray-900 border-t dark:border-gray-800 shadow-xl"
+          >
+            <div className="flex flex-col space-y-2 px-4 pt-4 pb-8">
+              {NavbarMenu.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <NavLink
+                    to={item.link}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) => `
+                      block px-4 py-3 rounded-lg text-lg font-medium transition-all
+                      ${isActive 
+                        ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                        : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"}
+                    `}
+                  >
+                    {item.title}
+                  </NavLink>
+                </motion.div>
+              ))}
+
+              <div className="h-px bg-gray-200 dark:bg-gray-800 my-4" />
+
+              <div className="grid grid-cols-2 gap-4 pt-2">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex justify-center items-center px-4 py-3 rounded-xl border border-green-600 text-green-600 dark:text-green-400 font-semibold active:scale-95 transition-transform"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex justify-center items-center px-4 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 active:scale-95 transition-transform"
+                >
+                  Register
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
