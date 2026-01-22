@@ -62,9 +62,9 @@ export default function Navbar() {
 
   return (
     <nav className={`
-      fixed top-0 left-0 w-full z-50 transition-all duration-500
+      fixed top-0 left-0 w-full  z-50 transition-all duration-500
       ${scrolled 
-        ? "bg-emerald-600 shadow-2xl py-3" 
+        ? "bg-emerald-600 shadow-2xl py-5" 
         : "bg-white dark:bg-gray-900 py-5 shadow-lg"
       }
     `}> 

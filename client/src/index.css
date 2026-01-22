@@ -3,6 +3,16 @@
 
 
 
+@theme {
+  /* v4 handles dark mode automatically via the 'system' or 'selector' */
+}
+
+/* This tells Tailwind v4 to trigger "dark:" classes when 
+   the .dark class is present on the root element */
+@variant dark (&:where(.dark, .dark *));
+
+
+
 
 :root {
   --eco-green: #2e7d32;
@@ -25,7 +35,7 @@ body{
    font-family: "Nunito Sans", sans-serif;
   font-weight: 900;
   font-size: medium;
-  @apply transition-colors duration-500 bg-white dark:bg-gray-950;
+  
 }
 
 
@@ -46,6 +56,9 @@ position: fixed;
   left: 0;
   width: 100%
 }
+
+
+
 
 
 
