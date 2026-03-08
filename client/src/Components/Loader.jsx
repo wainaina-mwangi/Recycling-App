@@ -29,7 +29,7 @@ export default function Loader() {
         transition={{ delay: 0.5, duration: 0.6 }}
         className="text-gray-600 dark:text-gray-300 mt-2"
       >
-        ♻️ Empowering Clean Communities Together
+        Empowering Clean Communities Together
       </motion.p>
     </div>
   );
